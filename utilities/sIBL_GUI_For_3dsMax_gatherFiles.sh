@@ -11,7 +11,7 @@ cp ./releases/Change\ Log.html ./releases/repository/
 
 #! Helper Script Gathering.
 cd ./src
-zip -r ../releases/repository/sIBL_GUI_For_3dsMax.zip *.ms
+zip -r ../releases/repository/sIBL_GUI_For_3dsMax.zip *.ms ../README
 
 #! Reaching Original Directory.
 cd ../
