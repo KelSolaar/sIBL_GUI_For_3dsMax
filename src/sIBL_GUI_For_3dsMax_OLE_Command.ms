@@ -7,13 +7,13 @@
 /************************************************************************************************
 ***	sIBL_GUI_For_3dsMax_OLE_Command.ms
 ***
-***	Platform :
+***	Platform:
 ***		Windows
 ***
-***	Description :
+***	Description:
 ***		sIBL_GUI For 3dsMax OLE Command Registration.
 ***
-***	Others :
+***	Others:
 ***
 ***********************************************************************************************/
 

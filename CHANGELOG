@@ -4,7 +4,7 @@ h2=. Change Log
 
 h3. 3.0.0
 
-* New 3dsMax Helper Script Utility with the following features :
+* New 3dsMax Helper Script Utility with the following features:
 ** OLE Server Registration.
 ** sIBL_GUI Launch.
 ** Loader Script Execution.
