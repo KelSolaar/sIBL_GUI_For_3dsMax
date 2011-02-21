@@ -73,7 +73,7 @@ utility sIBL_GUI_For_3dsMax "sIBL_GUI For 3ds Max"
 			sIBL_3dsmax_writeSubKeyDatas registryKey "VersionIndependentProgID" #REG_SZ "MAX.Application"
 		)
 		catch
-			messageBox ( "sIBL_GUI | Errors While Accessing Windows Registry, Make Sure 3dsmax Is Running As Administrator In Order To Register The OLE Server !" ) title:"sIBL_GUI Error"
+			messageBox ( "sIBL_GUI | Errors While Accessing Windows Registry, Make Sure 3dsmax Is Running As Administrator In Order To Register The OLE Server!" ) title:"sIBL_GUI Error"
 	)
 
 	fn sIBL_3dsmax_readFile file =
@@ -127,7 +127,7 @@ utility sIBL_GUI_For_3dsMax "sIBL_GUI For 3ds Max"
 		if (doesFileExist loaderScriptPath ) then
 			fileIn loaderScriptPath
 		else
-			messageBox ( "sIBL_GUI | No Loader Script File Available In \"" + ( getFilenamePath loaderScriptPath ) + "\" Directory  !" ) title:"sIBL_GUI Error"
+			messageBox ( "sIBL_GUI | No Loader Script File Available In \"" + ( getFilenamePath loaderScriptPath ) + "\" Directory!" ) title:"sIBL_GUI Error"
 	)
 
 	fn sIBL_3dsmax_launchApplication = 
@@ -139,7 +139,7 @@ utility sIBL_GUI_For_3dsMax "sIBL_GUI For 3ds Max"
 			HiddenDOSCommand executablePath startpath:executableDirectory donotwait:true
 		)
 		else
-			messageBox "sIBL_GUI | No sIBL_GUI Executable Path Defined !" title:"sIBL_GUI Error"
+			messageBox "sIBL_GUI | No sIBL_GUI Executable Path Defined!" title:"sIBL_GUI Error"
 	)
 
 	rollout sIBL_GUI_For_3dsMax_preferences_Rollout "Preferences"
