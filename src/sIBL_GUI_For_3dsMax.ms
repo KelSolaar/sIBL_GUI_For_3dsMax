@@ -21,11 +21,11 @@
 ***	MaxScript Begin
 **********************************************************************************************/
 
-utility sIBL_GUI_For_3dsMax "sIBL_GUI For 3ds Max" 
+utility sIBL_GUI_For_3dsMax "sIBL_GUI For 3ds Max"
 (
 
 	local PREFERENCES_FILE = "sIBL_GUI_Preferences.rc"
-	
+
 	local DATAS_COLLECTOR_FILE = "_sIBL_GUI_3dsmaxHelperScriptDatasCollector.txt"
 
 	local LOADER_SCRIPTS_DIRECTORY = "HDRLabs\\sIBL_GUI\\io\\loaderScripts\\"
@@ -33,7 +33,7 @@ utility sIBL_GUI_For_3dsMax "sIBL_GUI For 3ds Max"
 	local HDRLABS_URL = "http://www.hdrlabs.com"
 	local WINDOWS_RELEASE_URL = "http://kelsolaar.hdrlabs.com/?dir=./sIBL_GUI/Repository/Builds/Windows"
 	local APPLICATION_THREAD_URL = "http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371"
-		
+
 	local sIBL_GUI_For_3dsMax_preferences_Rollout
 	local sIBL_GUI_For_3dsMax_interactions_Rollout
 
@@ -54,9 +54,9 @@ utility sIBL_GUI_For_3dsMax "sIBL_GUI For 3ds Max"
 	(
 		local registryKey
 		local maxVersion_ = ( (maxVersion() )[1] / 1000 ) as string
-		
+
 		try
-		(	
+		(
 			sIBL_3dsmax_createRegistryKey HKEY_CLASSES_ROOT "MAX.Application" &registryKey "" #REG_SZ "OLE Automation MAX Application"
 
 			sIBL_3dsmax_writeSubKeyDatas registryKey "Clsid" #REG_SZ "{7FA22CB1-D26F-11d0-B260-00A0240CEEA3}"
@@ -79,7 +79,7 @@ utility sIBL_GUI_For_3dsMax "sIBL_GUI For 3ds Max"
 	fn sIBL_3dsmax_readFile file =
 	(
 		local fileContent = #()
-		
+
 		if (doesFileExist file ) then
 		(
 			local stream = openFile file mode:"rt"
@@ -87,7 +87,7 @@ utility sIBL_GUI_For_3dsMax "sIBL_GUI For 3ds Max"
 				append fileContent ( readLine stream )
 			close stream
 		)
-	
+
 		return fileContent
 	)
 
@@ -96,14 +96,14 @@ utility sIBL_GUI_For_3dsMax "sIBL_GUI For 3ds Max"
 		HiddenDOSCommand ( "echo %APPDATA% > " + DATAS_COLLECTOR_FILE )
 		fileContent = sIBL_3dsmax_readFile DATAS_COLLECTOR_FILE
 		deleteFile DATAS_COLLECTOR_FILE
-		
+
 		return fileContent
 	)
 
 	fn sIBL_3dsmax_setPreferences executablePath =
 	(
 		local preferencesFilePath =  ( getDir #maxData ) + "\\" + PREFERENCES_FILE
-			
+
 		if (doesFileExist preferencesFilePath == false ) then
 			createFile preferencesFilePath
 
@@ -112,14 +112,14 @@ utility sIBL_GUI_For_3dsMax "sIBL_GUI For 3ds Max"
 		flush stream
 		close stream
 	)
-	
+
 	fn sIBL_3dsmax_getPreferences =
 	(
 		local preferencesFilePath =  ( getDir #maxData ) + "\\" + PREFERENCES_FILE
 		sIBL_3dsmax_readFile preferencesFilePath
 	)
-	
-	fn sIBL_3dsmax_executeLoaderScript = 
+
+	fn sIBL_3dsmax_executeLoaderScript =
 	(
 		local applicationDatasDirectory = sIBL_3dsmax_getApplicationDataDirectory()
 		local loaderScriptPath = ( trimRight applicationDatasDirectory[1] ) + "\\" + LOADER_SCRIPTS_DIRECTORY + LOADER_SCRIPT
@@ -130,7 +130,7 @@ utility sIBL_GUI_For_3dsMax "sIBL_GUI For 3ds Max"
 			messageBox ( "sIBL_GUI | No Loader Script File Available In \"" + ( getFilenamePath loaderScriptPath ) + "\" Directory!" ) title:"sIBL_GUI Error"
 	)
 
-	fn sIBL_3dsmax_launchApplication = 
+	fn sIBL_3dsmax_launchApplication =
 	(
 		executablePath =  sIBL_GUI_For_3dsMax_preferences_Rollout.sIBL_GUI_Path_editText.text
 		if( executablePath != "" ) then
@@ -148,7 +148,7 @@ utility sIBL_GUI_For_3dsMax "sIBL_GUI For 3ds Max"
 		editText sIBL_GUI_Path_editText "" pos:[12,24] width:132 height:24
 		button Browse_Button "..." pos:[16,56] width:128 height:24
 		button Register_OLE_Server_Button "Register OLE Server" pos:[8,96] width:144 height:24
-		
+
 		on sIBL_GUI_Path_editText entered text do
 		(
 			sIBL_3dsmax_setPreferences sIBL_GUI_Path_editText.text
@@ -161,13 +161,13 @@ utility sIBL_GUI_For_3dsMax "sIBL_GUI For 3ds Max"
 				sIBL_GUI_Path_editText.text = executablePath
 				sIBL_3dsmax_setPreferences sIBL_GUI_Path_editText.text
 		)
-		
+
 		on Register_OLE_Server_Button pressed  do
 		(
 			sIBL_3dsmax_registerOLEServer()
 		)
 	)
-	
+
 	rollout sIBL_GUI_For_3dsMax_interactions_Rollout "Interactions"
 	(
 		button Launch_sIBL_GUI_Button "Launch sIBL_GUI" pos:[8,8] width:144 height:24
@@ -180,17 +180,17 @@ utility sIBL_GUI_For_3dsMax "sIBL_GUI For 3ds Max"
 
 		on Execute_Loader_Script_Button pressed  do
 			sIBL_3dsmax_executeLoaderScript()
-		
+
 		on Launch_sIBL_GUI_Button pressed  do
 			sIBL_3dsmax_launchApplication()
 	)
 
 	on sIBL_GUI_For_3dsMax open do
-	( 
+	(
 		addRollout sIBL_GUI_For_3dsMax_preferences_Rollout
 		addRollout sIBL_GUI_For_3dsMax_interactions_Rollout
 		local sIBL_GUI_preferences = (sIBL_3dsmax_getPreferences())
-	
+
 		if( sIBL_GUI_preferences[1] != undefined ) then
 			sIBL_GUI_For_3dsMax_preferences_Rollout.sIBL_GUI_Path_editText.text =  sIBL_GUI_preferences[1]
 	)
