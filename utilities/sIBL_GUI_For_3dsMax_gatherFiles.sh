@@ -3,15 +3,15 @@ echo ----------------------------------------------------------------
 echo sIBL_GUI For 3dsMax - Files Gathering
 echo ----------------------------------------------------------------
 
-#! Gathering Folder Cleanup.
+#! Gathering folder cleanup.
 rm -rf ./releases/repository/*
 
-#! Change Log Gathering.
+#! Change log gathering.
 cp ./releases/Change\ Log.html ./releases/repository/
 
-#! Helper Script Gathering.
+#! Helper script gathering.
 cd ./src
 zip -r ../releases/repository/sIBL_GUI_For_3dsMax.zip *.ms ../README
 
-#! Reaching Original Directory.
+#! Reaching original directory.
 cd ../
