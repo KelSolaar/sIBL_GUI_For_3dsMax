@@ -26,7 +26,7 @@ utility sIBL_GUI_For_3dsMax "sIBL_GUI For 3ds Max"
 
 	local PREFERENCES_FILE = "sIBL_GUI_Preferences.rc"
 
-	local DATAS_COLLECTOR_FILE = "_sIBL_GUI_3dsmaxHelperScriptDatasCollector.txt"
+	local DATA_COLLECTOR_FILE = "_sIBL_GUI_3dsmaxHelperScriptDataCollector.txt"
 
 	local LOADER_SCRIPTS_DIRECTORY = "HDRLabs\\sIBL_GUI\\io\\loaderScripts\\"
 	local LOADER_SCRIPT = "sIBL_3dsmax_Import.ms"
@@ -43,7 +43,7 @@ utility sIBL_GUI_For_3dsMax "sIBL_GUI For 3ds Max"
 		registry.setValue registryKey keyValueName keyValueType keyValue
 	)
 
-	fn sIBL_3dsmax_writeSubKeyDatas registryKey subKeyName subKeyType subKeyValue =
+	fn sIBL_3dsmax_writeSubKeyData registryKey subKeyName subKeyType subKeyValue =
 	(
 		local subKey
 		registry.createKey registryKey subKeyName key:&subKey
@@ -59,18 +59,18 @@ utility sIBL_GUI_For_3dsMax "sIBL_GUI For 3ds Max"
 		(
 			sIBL_3dsmax_createRegistryKey HKEY_CLASSES_ROOT "MAX.Application" &registryKey "" #REG_SZ "OLE Automation MAX Application"
 
-			sIBL_3dsmax_writeSubKeyDatas registryKey "Clsid" #REG_SZ "{7FA22CB1-D26F-11d0-B260-00A0240CEEA3}"
+			sIBL_3dsmax_writeSubKeyData registryKey "Clsid" #REG_SZ "{7FA22CB1-D26F-11d0-B260-00A0240CEEA3}"
 
-			sIBL_3dsmax_writeSubKeyDatas registryKey "CurVer" #REG_SZ ("MAX.Application." + maxVersion_)
+			sIBL_3dsmax_writeSubKeyData registryKey "CurVer" #REG_SZ ("MAX.Application." + maxVersion_)
 
 			sIBL_3dsmax_createRegistryKey HKEY_CLASSES_ROOT ("MAX.Application." + maxVersion_) &registryKey "" #REG_SZ ("OLE Automation MAX " + maxVersion_ + ".0 Application")
 
-			sIBL_3dsmax_writeSubKeyDatas registryKey "Clsid" #REG_SZ "{7FA22CB1-D26F-11d0-B260-00A0240CEEA3}"
+			sIBL_3dsmax_writeSubKeyData registryKey "Clsid" #REG_SZ "{7FA22CB1-D26F-11d0-B260-00A0240CEEA3}"
 
 			sIBL_3dsmax_createRegistryKey HKEY_CLASSES_ROOT "CLSID\{7FA22CB1-D26F-11d0-B260-00A0240CEEA3}" &registryKey "" #REG_SZ ("OLE Automation MAX " + maxVersion_ + ".0 Application")
 
-			sIBL_3dsmax_writeSubKeyDatas registryKey "ProgID" #REG_SZ ("MAX.Application." + maxVersion_)
-			sIBL_3dsmax_writeSubKeyDatas registryKey "VersionIndependentProgID" #REG_SZ "MAX.Application"
+			sIBL_3dsmax_writeSubKeyData registryKey "ProgID" #REG_SZ ("MAX.Application." + maxVersion_)
+			sIBL_3dsmax_writeSubKeyData registryKey "VersionIndependentProgID" #REG_SZ "MAX.Application"
 		)
 		catch
 			messageBox ( "sIBL_GUI | Errors While Accessing Windows Registry, Make Sure 3dsmax Is Running As Administrator In Order To Register The OLE Server!" ) title:"sIBL_GUI Error"
@@ -93,9 +93,9 @@ utility sIBL_GUI_For_3dsMax "sIBL_GUI For 3ds Max"
 
 	fn sIBL_3dsmax_getApplicationDataDirectory =
 	(
-		HiddenDOSCommand ( "echo %APPDATA% > " + DATAS_COLLECTOR_FILE )
-		fileContent = sIBL_3dsmax_readFile DATAS_COLLECTOR_FILE
-		deleteFile DATAS_COLLECTOR_FILE
+		HiddenDOSCommand ( "echo %APPDATA% > " + DATA_COLLECTOR_FILE )
+		fileContent = sIBL_3dsmax_readFile DATA_COLLECTOR_FILE
+		deleteFile DATA_COLLECTOR_FILE
 
 		return fileContent
 	)
@@ -121,8 +121,8 @@ utility sIBL_GUI_For_3dsMax "sIBL_GUI For 3ds Max"
 
 	fn sIBL_3dsmax_executeLoaderScript =
 	(
-		local applicationDatasDirectory = sIBL_3dsmax_getApplicationDataDirectory()
-		local loaderScriptPath = ( trimRight applicationDatasDirectory[1] ) + "\\" + LOADER_SCRIPTS_DIRECTORY + LOADER_SCRIPT
+		local applicationDataDirectory = sIBL_3dsmax_getApplicationDataDirectory()
+		local loaderScriptPath = ( trimRight applicationDataDirectory[1] ) + "\\" + LOADER_SCRIPTS_DIRECTORY + LOADER_SCRIPT
 
 		if (doesFileExist loaderScriptPath ) then
 			fileIn loaderScriptPath
