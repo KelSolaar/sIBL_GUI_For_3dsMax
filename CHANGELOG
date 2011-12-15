@@ -1,27 +1,38 @@
-h1=. sIBL_GUI For 3dsMax - 3.0.0
+sIBL_GUI For 3dsMax - 3.1.0
+===========================
 
-h2=. Change Log
+Change Log
+==========
 
-h3. 3.0.0
+3.1.0
+-----
 
-* New 3dsMax Helper Script Utility with the following features:
-** OLE Server Registration.
-** sIBL_GUI Launch.
-** Loader Script Execution.
-** Online Links.
-** ExecutionCommand registration script.
+-  Refactor 3dsMax Helper Script Utility for sIBL_GUI 4.0.0
 
-h3. 1.0.1
+3.0.0
+-----
 
-* Jeff Hanna improved the sIBL_OLE_ExecutionCommand.ms by allowing it to automatically register the Win32 OLE Server directly from within 3dsmax.
+-  New 3dsMax Helper Script Utility with the following features:
+   -  OLE Server Registration.
+   -  sIBL_GUI Launch.
+   -  Loader Script Execution.
+   -  Online Links.
+   -  ExecutionCommand registration script.
 
-h3. 1.0.0
+1.0.1
+-----
 
-* Initial Release of sIBL_GUI For 3dsMax.
+-  Jeff Hanna improved the sIBL_OLE_ExecutionCommand.ms by allowing it to automatically register the Win32 OLE Server directly from within 3dsmax.
 
-h2=. About
+1.0.0
+-----
 
-sIBL_GUI by Thomas Mansencal - 2008 - 2011
-Copyright (C) 2008 - 2011 - Thomas Mansencal - "thomas.mansencal@gmail.com":mailto:thomas.mansencal@gmail.com
-This Software Is Released Under Terms Of GNU GPL V3 License: "http://www.gnu.org/licenses/":http://www.gnu.org/licenses/
-"http://www.thomasmansencal.com/":http://www.thomasmansencal.com/
+-  Initial Release of sIBL_GUI For 3dsMax.
+
+About
+-----
+
+| sIBL_GUI by Thomas Mansencal – 2008 – 2011
+| Copyright© 2008 – 2011 – Thomas Mansencal – `thomas.mansencal@gmail.com <mailto:thomas.mansencal@gmail.com>`_
+| This Software Is Released Under Terms Of GNU GPL V3 License: `http://www.gnu.org/licenses/ <http://www.gnu.org/licenses/>`_
+| `http://www.thomasmansencal.com/ <http://www.thomasmansencal.com/>`_
