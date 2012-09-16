@@ -3,7 +3,7 @@ echo ----------------------------------------------------------------
 echo sIBL_GUI For 3dsMax - Files Gathering
 echo ----------------------------------------------------------------
 
-export PROJECT=/Users/KelSolaar/Documents/Developement/sIBL_GUI_For_3dsMax
+export PROJECT=/Users/KelSolaar/Documents/Development/sIBL_GUI_For_3dsMax
 
 export SOURCE=$PROJECT/src
 export RELEASES=$PROJECT/releases

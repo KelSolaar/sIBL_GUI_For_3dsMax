@@ -29,7 +29,7 @@ Changes
 1.0.0
 -----
 
--  Initial Release of sIBL_GUI For 3dsMax.
+-  Initial release of sIBL_GUI For 3dsMax.
 
 .. .about
 
