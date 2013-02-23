@@ -59,6 +59,8 @@ utility sIBL_GUI_For_3dsMax "sIBL_GUI For 3ds Max"
 
 			writeSubKeyDatas registryKey "ProgID" #REG_SZ ("MAX.Application." + maxVersion_)
 			writeSubKeyDatas registryKey "VersionIndependentProgID" #REG_SZ "MAX.Application"
+			
+			messageBox ( "sIBL_GUI | Successfully registered the OLE server for 3dsmax!" ) title:"sIBL_GUI Message"
 		)
 		catch
 			messageBox ( "sIBL_GUI | Errors while accessing Windows registry, make sure 3dsmax is running as with Administrator privileges in order to register the OLE server!" ) title:"sIBL_GUI Error"
